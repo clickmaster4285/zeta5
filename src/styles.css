@@ -1,0 +1,460 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-red: var(--red);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.16 0.012 260);
+  --foreground: oklch(0.97 0.005 260);
+  --card: oklch(0.2 0.015 260);
+  --card-foreground: oklch(0.97 0.005 260);
+  --popover: oklch(0.2 0.015 260);
+  --popover-foreground: oklch(0.97 0.005 260);
+  --primary: oklch(0.56 0.23 27);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.26 0.02 260);
+  --secondary-foreground: oklch(0.97 0.005 260);
+  --muted: oklch(0.26 0.02 260);
+  --muted-foreground: oklch(0.72 0.02 260);
+  --accent: oklch(0.3 0.03 260);
+  --accent-foreground: oklch(0.97 0.005 260);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.56 0.23 27);
+  --surface-glow: radial-gradient(60% 60% at 50% 0%, oklch(0.56 0.23 27 / 0.18), transparent 70%);
+  --gradient-hero: linear-gradient(180deg, oklch(0.1 0.01 260 / 0.35) 0%, oklch(0.1 0.01 260 / 0.7) 55%, oklch(0.16 0.012 260) 100%);
+  --shadow-elevated: 0 24px 60px -24px oklch(0.56 0.23 27 / 0.45);
+  --red: oklch(0.62 0.245 27);
+  --gradient-accent: linear-gradient(120deg, oklch(0.55 0.24 25), oklch(0.45 0.22 20));
+  --gradient-text: linear-gradient(100deg, oklch(0.62 0.25 25) 0%, oklch(0.55 0.25 24) 45%, oklch(0.45 0.22 20) 100%);
+
+  --grid-lines: linear-gradient(oklch(1 0 0 / 0.035) 1px, transparent 1px), linear-gradient(90deg, oklch(1 0 0 / 0.035) 1px, transparent 1px);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+}
+
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* =====================================================================
+   Depth & motion primitives (see components/fx)
+   ===================================================================== */
+@layer components {
+  /* Pointer tilt: the transform lives here, the angles come from CSS vars
+     written by <Tilt>. Keep overflow visible on the element — overflow
+     flattens 3D and would pin .depth-* children to the surface. */
+  .fx-tilt {
+    --rx: 0deg;
+    --ry: 0deg;
+    --dx: 0px;
+    --dy: 0px;
+    --s: 1;
+    --spot: 0;
+    --mx: 50%;
+    --my: 50%;
+    --tilt-dur: 700ms;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)) translate3d(var(--dx), var(--dy), 0) scale(var(--s));
+    transition: transform var(--tilt-dur) cubic-bezier(0.22, 1, 0.36, 1), border-color 300ms ease, background-color 300ms ease;
+    will-change: transform;
+  }
+
+  /* Cursor spotlight: a soft fill + a 1px border glow that follow the pointer. */
+  .fx-spot::before,
+  .fx-spot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: var(--spot);
+    transition: opacity 450ms ease;
+  }
+  .fx-spot::before {
+    background: radial-gradient(
+      360px circle at var(--mx) var(--my),
+      color-mix(in oklab, var(--primary) 16%, transparent),
+      transparent 62%
+    );
+  }
+  .fx-spot::after {
+    padding: 1px;
+    background: radial-gradient(
+      280px circle at var(--mx) var(--my),
+      color-mix(in oklab, var(--primary) 85%, white 10%),
+      transparent 70%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  /* Specular sheen for photographic media inside a tilt card. */
+  .fx-glare {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: var(--spot);
+    background: radial-gradient(
+      circle at var(--mx) var(--my),
+      rgba(255, 255, 255, 0.16),
+      rgba(255, 255, 255, 0.04) 38%,
+      transparent 62%
+    );
+    mix-blend-mode: screen;
+    transition: opacity 400ms ease;
+  }
+
+  /* Children floating above a tilted surface. */
+  .depth-1 { transform: translateZ(18px); }
+  .depth-2 { transform: translateZ(36px); }
+  .depth-3 { transform: translateZ(56px); }
+
+  .preserve-3d { transform-style: preserve-3d; }
+
+  /* Animated hero scroll cue */
+  .scroll-cue::before {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 44px;
+    margin: 0 auto 10px;
+    background: linear-gradient(to bottom, transparent, var(--primary) 40%, var(--primary) 60%, transparent);
+    background-size: 100% 200%;
+    animation: cue-drop 2.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  }
+
+  @keyframes cue-drop {
+    0% { background-position: 0 -44px; opacity: 0; }
+    30% { opacity: 1; }
+    100% { background-position: 0 44px; opacity: 0; }
+  }
+
+  /* Nav: sliding active underline */
+  .nav-link {
+    position: relative;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2px;
+    height: 1px;
+    background: var(--primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .nav-link:hover::after,
+  .nav-link[data-active="true"]::after {
+    transform: scaleX(1);
+  }
+
+  /* Sovereign stack: 3D planes */
+  .stack-scene {
+    perspective: 1300px;
+    perspective-origin: 50% 30%;
+  }
+  .stack-planes {
+    --tilt-x: 0deg;
+    --tilt-y: 0deg;
+    transform-style: preserve-3d;
+    transform: translate(-50%, -12%) rotateZ(10deg) rotateX(calc(58deg + var(--tilt-x))) rotateZ(calc(-40deg + var(--tilt-y)));
+    transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .stack-plane {
+    position: absolute;
+    inset: 0;
+    border: 1px solid oklch(1 0 0 / 0.16);
+    background: oklch(0.2 0.015 260 / 0.62);
+    background-image:
+      linear-gradient(oklch(1 0 0 / 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(1 0 0 / 0.06) 1px, transparent 1px);
+    background-size: 9% 9%;
+    opacity: 0.38;
+    transform: translateZ(calc(var(--i) * var(--lift)));
+    transition:
+      opacity 600ms ease,
+      transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 600ms ease,
+      box-shadow 600ms ease,
+      background-color 600ms ease;
+  }
+  .stack-plane[data-active="true"] {
+    opacity: 1;
+    border-color: color-mix(in oklab, var(--primary) 80%, transparent);
+    background-color: oklch(0.22 0.02 260 / 0.88);
+    box-shadow:
+      0 0 44px color-mix(in oklab, var(--primary) 28%, transparent),
+      inset 0 0 60px color-mix(in oklab, var(--primary) 18%, transparent);
+    transform: translateZ(calc(var(--i) * var(--lift) + 18px));
+  }
+  .stack-satellite {
+    position: absolute;
+    border: 1px solid color-mix(in oklab, var(--primary) 50%, transparent);
+    background: oklch(0.2 0.015 260 / 0.9);
+    box-shadow: 0 0 28px color-mix(in oklab, var(--primary) 22%, transparent);
+    transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1), opacity 600ms ease;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-tilt { transition: none; transform: none; }
+  .scroll-cue::before { animation: none; }
+  .stack-planes, .stack-plane, .stack-satellite { transition: none; }
+}
+
+@utility reveal-up {
+  opacity: 0;
+  transform: translateY(64px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  &[data-visible="true"] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility text-gradient {
+  background-image: var(--gradient-text);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* --- Stats band ambient motion --- */
+@keyframes stat-sweep {
+  0% {
+    transform: translateX(-40%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(140%);
+    opacity: 0;
+  }
+}
+
+@keyframes stat-drift {
+  0% {
+    transform: translate3d(-6%, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(6%, -8%, 0) scale(1.12);
+  }
+  100% {
+    transform: translate3d(-6%, 0, 0) scale(1);
+  }
+}
+
+@keyframes stat-grid {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@keyframes stat-pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@utility stat-sweep {
+  animation: stat-sweep 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@utility stat-drift {
+  animation: stat-drift 16s ease-in-out infinite;
+}
+
+@utility stat-grid {
+  animation: stat-grid 8s linear infinite;
+}
+
+@utility stat-pulse {
+  animation: stat-pulse 3.2s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stat-sweep,
+  .stat-drift,
+  .stat-grid,
+  .stat-pulse {
+    animation: none;
+  }
+}
+
+/* Partner logo marquee — seamless background tiling, one tile width per loop */
+@keyframes partners-scroll {
+  from { background-position-x: 0; }
+  to { background-position-x: -1573px; }
+}
+
+.partners-marquee {
+  background-repeat: repeat-x;
+  background-position: 0 center;
+  background-size: auto 100%;
+  animation: partners-scroll 38s linear infinite;
+}
+
+.partners-marquee:hover {
+  animation-play-state: paused;
+}
+
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partners-marquee { animation: none; }
+}
