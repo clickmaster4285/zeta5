@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { Radio, Cloud, Cpu, Activity, ArrowUpRight } from "lucide-react";
 import { Tilt } from "@/components/fx/Tilt";
 import { PerspectiveGrid } from "@/components/fx/PerspectiveGrid";
+import { bindScrollListener } from "@/hooks/bindScrollListener";
+import { reducedMotion } from "@/hooks/useMotionFx";
 
 const majorServices = [
   {
@@ -38,30 +40,35 @@ const minorServices = [
 
 export function Services() {
   const ref = useRef<HTMLElement>(null);
-  const [p, setP] = useState(0);
+  const [p, setP] = useState(() => (reducedMotion() ? 1 : 0));
 
   useEffect(() => {
+    if (reducedMotion()) {
+      setP(1);
+      return;
+    }
+
     const el = ref.current;
     if (!el) return;
-    let raf = 0;
+
     const update = () => {
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight;
+
+      if (rect.bottom <= 0) {
+        setP(1);
+        return;
+      }
+      if (rect.top >= vh) {
+        setP(0);
+        return;
+      }
+
       const total = rect.height + vh;
       setP(Math.min(Math.max((vh - rect.top) / total, 0), 1));
-      raf = 0;
     };
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
+
+    return bindScrollListener(update);
   }, []);
 
   const seg = (start: number, len = 0.22) =>

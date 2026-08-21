@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { Globe2, Radio, ShieldCheck, Server, Satellite, Cable } from "lucide-react";
 import { CountUp } from "@/components/CountUp";
 import { Tilt } from "@/components/fx/Tilt";
+import { bindScrollListener } from "@/hooks/bindScrollListener";
+import { reducedMotion } from "@/hooks/useMotionFx";
 
 const cards = [
   {
@@ -44,30 +46,34 @@ const stats = [
 
 export function About() {
   const ref = useRef<HTMLElement>(null);
-  const [p, setP] = useState(0);
+  const [p, setP] = useState(() => (reducedMotion() ? 1 : 0));
 
   useEffect(() => {
+    if (reducedMotion()) {
+      setP(1);
+      return;
+    }
+
     const el = ref.current;
     if (!el) return;
-    let raf = 0;
+
     const update = () => {
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight;
-      // 0 when the panel top is at the bottom of the viewport, 1 when it reaches the top.
+
+      if (rect.bottom <= 0) {
+        setP(1);
+        return;
+      }
+      if (rect.top >= vh) {
+        setP(0);
+        return;
+      }
+
       setP(Math.min(Math.max((vh - rect.top) / vh, 0), 1));
-      raf = 0;
     };
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
+
+    return bindScrollListener(update);
   }, []);
 
   return (

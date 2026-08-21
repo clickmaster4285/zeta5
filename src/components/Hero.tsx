@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import { bindScrollListener } from "@/hooks/bindScrollListener";
+import { reducedMotion } from "@/hooks/useMotionFx";
 import { ArrowRight } from "lucide-react";
 import heroVideo from "@/assets/hero-city-tower.mp4.asset.json";
 import { NetworkCanvas } from "@/components/fx/NetworkCanvas";
@@ -11,19 +13,15 @@ export function Hero() {
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
+    if (reducedMotion()) return;
+
     const onScroll = () => {
       const y = window.scrollY;
       const vh = window.innerHeight;
-      // Move the hero up as the About section begins to enter, completing just before it's fully covered.
       setOffset(Math.min((y / vh) * 55, 55));
     };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
+
+    return bindScrollListener(onScroll);
   }, []);
 
   /* Pointer parallax: the copy drifts a few px toward the pointer while the
