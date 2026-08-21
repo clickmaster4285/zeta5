@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { submitContactForm, type ContactSubmissionInput } from "@/lib/contact.functions";
+import { submitContactForm, type ContactSubmissionInput } from "@/lib/contact";
 
 export function ContactForm() {
   const [form, setForm] = useState<ContactSubmissionInput>({
@@ -28,7 +28,7 @@ export function ContactForm() {
 
     startTransition(async () => {
       try {
-        await submitContactForm({ data: form });
+        await submitContactForm(form);
         setSubmitted(true);
         setForm({ name: "", email: "", company: "", message: "" });
       } catch (err) {
