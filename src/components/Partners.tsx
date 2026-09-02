@@ -7,6 +7,12 @@ export const Partners = () => {
       aria-labelledby="partners-heading"
       className="relative z-10 w-full overflow-hidden border-y border-border/60 bg-background py-14 md:py-20"
     >
+      <img
+        src="/Globe Component.png"
+        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 h-[600px] w-auto object-contain opacity-[0.05] select-none"
+        alt=""
+        aria-hidden="true"
+      />
       <div className="mx-auto mb-10 max-w-3xl px-6 text-center">
         <p className="text-xs font-medium uppercase tracking-[0.28em] text-primary">
           Trusted partners
