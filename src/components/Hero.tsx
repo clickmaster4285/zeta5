@@ -132,7 +132,11 @@ export function Hero() {
       />
 
       <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-center px-6 md:flex-row md:items-center">
-        <div ref={copyRef} className="w-full md:w-[60%]" style={{ willChange: "transform" }}>
+        <div
+          ref={copyRef}
+          className="w-full md:w-[60%] md:-translate-x-[3%]"
+          style={{ willChange: "transform" }}
+        >
           <p className="mb-5 text-xs font-semibold uppercase tracking-[0.45em] text-primary">
             Telecommunication Infrastructure
           </p>
@@ -165,7 +169,7 @@ export function Hero() {
             </Magnetic>
           </div>
         </div>
-        <div className="relative hidden w-full md:block md:w-[40%]">
+        <div className="relative hidden w-full translate-x-8 md:block md:w-[40%] md:translate-x-[9%] lg:translate-x-[15%]">
           <div className="relative flex h-full items-center justify-center">
             <img
               src="/globe.png"
