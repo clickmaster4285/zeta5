@@ -9,14 +9,4 @@ export default defineConfig({
     outDir: "dist",
     emptyOutDir: true,
   },
-  server: {
-    proxy: {
-      // Lovable CDN assets — proxied in dev; nginx does the same in production.
-      "/__l5e": {
-        target: "https://zeta-techs.lovable.app",
-        changeOrigin: true,
-        secure: true,
-      },
-    },
-  },
 });

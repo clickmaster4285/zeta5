@@ -1,6 +1,6 @@
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
 import { useSectionProgress, easeSeg } from "@/hooks/useSectionProgress";
-import logo from "@/assets/zeta-logo.png.asset.json";
+import logo from "@/assets/zeta-logo.png";
 
 // Mirrors the top navigation order.
 const quickLinks = [
@@ -57,7 +57,7 @@ export function SiteFooter() {
                 <div key={col} style={style}>
                   <a href="#top" className="inline-flex items-center gap-3" aria-label="Zeta home">
                     <img
-                      src={logo.url}
+                      src={logo}
                       alt="Zeta Technologies logo"
                       className="h-11 w-11 object-contain"
                     />

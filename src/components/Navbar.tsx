@@ -17,7 +17,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/fx/Magnetic";
 import { Tilt } from "@/components/fx/Tilt";
-import logo from "@/assets/zeta-logo.png.asset.json";
+import logo from "@/assets/zeta-logo.png";
 import menuServices from "@/assets/menu-services.jpg";
 import menuProducts from "@/assets/menu-products.jpg";
 
@@ -314,7 +314,7 @@ export function Navbar() {
         >
           <a href="#top" className="group flex items-center gap-3" aria-label="Zeta home">
             <img
-              src={logo.url}
+              src={logo}
               alt="Zeta Technologies logo"
               className="h-10 w-10 object-contain transition-transform duration-500 group-hover:[transform:rotateY(180deg)]"
             />
