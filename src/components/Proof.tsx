@@ -1,6 +1,6 @@
 import { useSectionProgress, easeSeg } from "@/hooks/useSectionProgress";
 import { Tilt } from "@/components/fx/Tilt";
-import logo from "@/assets/zeta-logo.png.asset.json";
+import logo from "@/assets/zeta-logo.png";
 
 const proofs = [
   {
@@ -106,7 +106,7 @@ export function Proof() {
         }}
         aria-hidden="true"
       >
-        <img src={logo.url} alt="" className="h-48 w-48 object-contain" />
+        <img src={logo} alt="" className="h-48 w-48 object-contain" />
       </div>
 
       <div className="relative mx-auto max-w-7xl">

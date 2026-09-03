@@ -1,4 +1,4 @@
-import partnersLogos from "@/assets/partners_logos.png.asset.json";
+import partnersLogos from "@/assets/partners_logos.png";
 
 export const Partners = () => {
   return (
@@ -8,7 +8,7 @@ export const Partners = () => {
       className="relative z-10 w-full overflow-hidden border-y border-border/60 bg-background py-14 md:py-20"
     >
       <img
-        src="/Globe Component.png"
+        src="/globe.png"
         className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 h-[600px] w-auto object-contain opacity-[0.05] select-none"
         alt=""
         aria-hidden="true"
@@ -29,7 +29,7 @@ export const Partners = () => {
         aria-label="Partner and carrier logos: Zong 4G, Telenor, Redtone, PTCL, Cisco, Acmetel, Transworld Home"
         role="img"
         className="partners-marquee marquee-mask h-20 w-full"
-        style={{ backgroundImage: `url(${partnersLogos.url})` }}
+        style={{ backgroundImage: `url(${partnersLogos})` }}
       />
     </section>
   );

@@ -1,4 +1,4 @@
-import cableMap from "@/assets/cable-landing-station.png.asset.json";
+import cableMap from "@/assets/cable-landing-station.png";
 import { useSectionProgress, easeSeg } from "@/hooks/useSectionProgress";
 import { Tilt } from "@/components/fx/Tilt";
 
@@ -118,7 +118,7 @@ export function CableStation() {
             >
               <div className="relative overflow-hidden rounded-2xl">
                 <img
-                  src={cableMap.url}
+                  src={cableMap}
                   alt="Network map of Pakistan showing terrestrial fiber routes and subsea cable landings"
                   loading="lazy"
                   width={1280}

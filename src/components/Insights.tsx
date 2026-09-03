@@ -1,4 +1,4 @@
-import insightVideo from "@/assets/insight-datacenter.mp4.asset.json";
+import insightVideo from "@/assets/insight-datacenter.mp4";
 import { useSectionProgress, easeSeg } from "@/hooks/useSectionProgress";
 import { Tilt } from "@/components/fx/Tilt";
 
@@ -55,7 +55,7 @@ export function Insights() {
           style={{ opacity: feature }}
         >
           <video
-            src={insightVideo.url}
+            src={insightVideo}
             autoPlay
             muted
             loop
