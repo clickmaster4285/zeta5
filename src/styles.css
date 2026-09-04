@@ -246,6 +246,188 @@
 
   .preserve-3d { transform-style: preserve-3d; }
 
+  .hero-ambient {
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 72% 34%, rgba(255, 62, 36, 0.2), transparent 24%),
+      radial-gradient(circle at 18% 78%, rgba(255, 38, 24, 0.14), transparent 28%),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(255, 255, 255, 0.026) 1px, transparent 1px);
+    background-size: auto, auto, 72px 72px, 72px 72px;
+    opacity: 0.9;
+    animation: hero-ambient-drift 18s ease-in-out infinite;
+  }
+
+  .hero-ambient::before,
+  .hero-ambient::after {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    pointer-events: none;
+  }
+
+  .hero-ambient::before {
+    background: conic-gradient(
+      from 120deg at 70% 44%,
+      transparent,
+      rgba(255, 70, 42, 0.18),
+      transparent 22%,
+      transparent 100%
+    );
+    mix-blend-mode: screen;
+    animation: hero-radar-spin 16s linear infinite;
+  }
+
+  .hero-ambient::after {
+    background: radial-gradient(ellipse at center, rgba(255, 42, 28, 0.18), transparent 58%);
+    filter: blur(32px);
+    transform-origin: 70% 45%;
+    animation: hero-glow-pulse 7s ease-in-out infinite;
+  }
+
+  .hero-energy-lines {
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .hero-energy-lines::before,
+  .hero-energy-lines::after {
+    content: "";
+    position: absolute;
+    left: -22%;
+    right: -22%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 82, 48, 0.72), transparent);
+    box-shadow: 0 0 24px rgba(255, 56, 32, 0.42);
+    opacity: 0;
+    transform: rotate(-14deg);
+    animation: hero-energy-sweep 6.4s ease-in-out infinite;
+  }
+
+  .hero-energy-lines::before {
+    top: 32%;
+  }
+
+  .hero-energy-lines::after {
+    top: 64%;
+    animation-delay: -3.1s;
+  }
+
+  .hero-sparks {
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .hero-sparks span {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 999px;
+    background: rgba(255, 218, 192, 0.92);
+    box-shadow:
+      0 0 12px rgba(255, 82, 48, 0.95),
+      0 0 28px rgba(255, 42, 28, 0.45);
+    opacity: 0;
+    animation: hero-spark 5.8s linear infinite;
+  }
+
+  .hero-sparks span::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 74px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 95, 58, 0.7), transparent);
+    transform: translate(-4px, -50%) rotate(-22deg);
+    transform-origin: left center;
+  }
+
+  .hero-sparks span:nth-child(1) { left: 12%; top: 22%; animation-delay: 0s; }
+  .hero-sparks span:nth-child(2) { left: 24%; top: 68%; animation-delay: -2.8s; }
+  .hero-sparks span:nth-child(3) { left: 35%; top: 36%; animation-delay: -4.1s; }
+  .hero-sparks span:nth-child(4) { left: 46%; top: 78%; animation-delay: -1.4s; }
+  .hero-sparks span:nth-child(5) { left: 56%; top: 18%; animation-delay: -3.2s; }
+  .hero-sparks span:nth-child(6) { left: 65%; top: 58%; animation-delay: -5s; }
+  .hero-sparks span:nth-child(7) { left: 72%; top: 31%; animation-delay: -0.8s; }
+  .hero-sparks span:nth-child(8) { left: 82%; top: 72%; animation-delay: -3.8s; }
+  .hero-sparks span:nth-child(9) { left: 89%; top: 24%; animation-delay: -2.1s; }
+  .hero-sparks span:nth-child(10) { left: 18%; top: 46%; animation-delay: -5.4s; }
+  .hero-sparks span:nth-child(11) { left: 52%; top: 50%; animation-delay: -2.4s; }
+  .hero-sparks span:nth-child(12) { left: 77%; top: 46%; animation-delay: -4.7s; }
+  .hero-sparks span:nth-child(13) { left: 31%; top: 15%; animation-delay: -1.9s; }
+  .hero-sparks span:nth-child(14) { left: 93%; top: 56%; animation-delay: -0.3s; }
+
+  @keyframes hero-spark {
+    0% {
+      transform: translate3d(-24px, 18px, 0) scale(0.55);
+      opacity: 0;
+    }
+    12% {
+      opacity: 0.95;
+    }
+    46% {
+      opacity: 0.55;
+    }
+    100% {
+      transform: translate3d(120px, -74px, 0) scale(1);
+      opacity: 0;
+    }
+  }
+
+  @keyframes hero-ambient-drift {
+    0% {
+      background-position: 0 0, 0 0, 0 0, 0 0;
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      background-position: 0 0, 0 0, 36px 22px, -28px 34px;
+      transform: translate3d(-1.5%, 1%, 0);
+    }
+    100% {
+      background-position: 0 0, 0 0, 72px 72px, -72px 72px;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes hero-radar-spin {
+    from {
+      transform: rotate(0deg) scale(1.08);
+    }
+    to {
+      transform: rotate(360deg) scale(1.08);
+    }
+  }
+
+  @keyframes hero-glow-pulse {
+    0%,
+    100% {
+      opacity: 0.4;
+      transform: scale(0.88);
+    }
+    50% {
+      opacity: 0.82;
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes hero-energy-sweep {
+    0% {
+      opacity: 0;
+      transform: translate3d(-18%, 26px, 0) rotate(-14deg);
+    }
+    18% {
+      opacity: 0.85;
+    }
+    56% {
+      opacity: 0.25;
+    }
+    100% {
+      opacity: 0;
+      transform: translate3d(22%, -30px, 0) rotate(-14deg);
+    }
+  }
+
   /* Animated hero scroll cue */
   .scroll-cue::before {
     content: "";
@@ -336,6 +518,14 @@
 @media (prefers-reduced-motion: reduce) {
   .fx-tilt { transition: none; transform: none; }
   .scroll-cue::before { animation: none; }
+  .hero-ambient,
+  .hero-ambient::before,
+  .hero-ambient::after,
+  .hero-energy-lines::before,
+  .hero-energy-lines::after {
+    animation: none;
+  }
+  .hero-sparks span { animation: none; }
   .stack-planes, .stack-plane, .stack-satellite { transition: none; }
 }
 

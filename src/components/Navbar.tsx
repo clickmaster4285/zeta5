@@ -129,7 +129,7 @@ function MegaPanel({ data, open, id }: { data: Mega; open: boolean; id: string }
   return (
     <div
       id={id}
-      className={`absolute left-1/2 top-full z-50 w-[min(1120px,calc(100vw-3rem))] -translate-x-1/2 pt-5 transition-all duration-200 ${
+      className={`absolute left-1/2 top-full z-50 w-[min(1120px,calc(100vw-3rem))] -translate-x-1/2 pt-5 transition-all duration-200 xl:w-[min(1280px,calc(100vw-5rem))] 2xl:w-[min(1440px,calc(100vw-7rem))] ${
         open ? "visible translate-y-0 opacity-100" : "invisible translate-y-2 opacity-0"
       }`}
       style={{ perspective: "1400px" }}
@@ -309,7 +309,7 @@ export function Navbar() {
         onMouseLeave={scheduleClose}
       >
         <nav
-          className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-6"
+          className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-6 xl:max-w-[1440px] xl:px-10 2xl:max-w-[1680px] 2xl:px-14"
           aria-label="Primary"
         >
           <a href="#top" className="group flex items-center gap-3" aria-label="Zeta home">
@@ -321,7 +321,7 @@ export function Navbar() {
             <span className="text-lg font-semibold tracking-[0.3em] text-foreground">ZETA</span>
           </a>
 
-          <ul className="hidden items-center gap-9 md:flex">
+          <ul className="hidden items-center gap-9 md:flex xl:gap-11 2xl:gap-12">
             {links.map((l) => {
               const isOpen = openMega === l.label;
               const panelId = `mega-${l.section}`;

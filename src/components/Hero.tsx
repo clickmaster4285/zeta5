@@ -4,7 +4,7 @@ import { reducedMotion } from "@/hooks/useMotionFx";
 import { ArrowRight } from "lucide-react";
 import { Magnetic } from "@/components/fx/Magnetic";
 import { motionFxEnabled } from "@/hooks/useMotionFx";
-import heroVideo from "@/assets/herovideo.mp4";
+import heroRightImage from "@/assets/herorightimage.png";
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -70,31 +70,32 @@ export function Hero() {
       className="sticky top-0 z-0 h-screen min-h-[640px] w-full overflow-hidden"
       style={{ transform: `translateY(-${offset}%)` }}
     >
-      <div className="absolute inset-0 bg-[#05080d]" aria-hidden="true" />
-      <video
-        className="absolute inset-0 h-full w-full object-cover object-center opacity-100"
-        src={heroVideo}
-        autoPlay
-        muted
-        loop
-        playsInline
+      <div
+        className="absolute inset-0 bg-[radial-gradient(circle_at_78%_42%,rgba(215,38,24,0.36),transparent_33%),linear-gradient(115deg,#05080d_0%,#120608_45%,#4f0b08_100%)]"
         aria-hidden="true"
       />
+      <div className="hero-ambient absolute inset-0" aria-hidden="true" />
+      <div className="hero-energy-lines absolute inset-0" aria-hidden="true" />
+      <div className="hero-sparks absolute inset-0" aria-hidden="true">
+        {Array.from({ length: 14 }).map((_, index) => (
+          <span key={index} />
+        ))}
+      </div>
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(90deg, rgba(5,8,13,0.72) 0%, rgba(5,8,13,0.38) 48%, rgba(5,8,13,0.12) 100%), linear-gradient(180deg, rgba(5,8,13,0.12) 0%, rgba(5,8,13,0.08) 48%, rgba(5,8,13,0.58) 100%)",
+            "linear-gradient(90deg, rgba(5,8,13,0.5) 0%, rgba(5,8,13,0.22) 48%, rgba(5,8,13,0.04) 100%), linear-gradient(180deg, rgba(5,8,13,0.08) 0%, rgba(5,8,13,0.12) 52%, rgba(5,8,13,0.68) 100%)",
         }}
         aria-hidden="true"
       />
-      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-center px-6 md:flex-row md:items-center md:justify-start">
+      <div className="relative z-10 mx-auto grid h-full max-w-7xl grid-cols-1 items-center gap-10 px-6 pt-20 md:grid-cols-[0.95fr_1.05fr] md:gap-12 md:pt-0 xl:max-w-[1440px] xl:grid-cols-[0.9fr_1.1fr] xl:px-10 2xl:max-w-[1680px] 2xl:grid-cols-[0.82fr_1.18fr] 2xl:px-14">
         <div
           ref={copyRef}
-          className="w-full md:w-[60%] md:-translate-x-[9%]"
+          className="w-full md:-translate-x-[9%] xl:translate-x-0"
           style={{ willChange: "transform" }}
         >
-          <h1 className="max-w-3xl text-5xl font-bold leading-[1.05] tracking-tight text-foreground md:text-7xl">
+          <h1 className="max-w-3xl text-5xl font-bold leading-[1.05] tracking-tight text-foreground md:text-7xl xl:text-7xl 2xl:text-8xl">
             Stronger networks,
             <br /> <span className="text-gradient">bolder</span>{" "}
             <span className="text-foreground">nations.</span>
@@ -122,6 +123,15 @@ export function Hero() {
               </a>
             </Magnetic>
           </div>
+        </div>
+        <div className="relative flex min-h-[380px] w-full items-center justify-center md:min-h-[560px] md:justify-end xl:min-h-[620px] 2xl:min-h-[720px]">
+          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[radial-gradient(ellipse_at_center,rgba(215,38,24,0.24),transparent_68%)] blur-2xl" />
+          <img
+            className="relative z-10 max-h-[58vh] w-[118%] max-w-none object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.45)] md:max-h-[88vh] md:w-[124%] md:translate-x-[5%] xl:max-h-[90vh] xl:w-[112%] xl:translate-x-[2%] 2xl:max-h-[86vh] 2xl:w-[104%] 2xl:translate-x-0"
+            src={heroRightImage}
+            alt=""
+            aria-hidden="true"
+          />
         </div>
       </div>
 
